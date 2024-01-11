@@ -1,24 +1,19 @@
-const express = require('express')
-const path = require('path');
 require('dotenv').config()
-
-console.log(process.env)
+const express = require('express')
+const configViewEngine = require('./config/viewEngine');
+const webRoutes = require('./routes/web')
 
 const app = express()
 const port = process.env.PORT || 6868;
 const hostname = process.env.HOST_NAME;
 
+
 //config templete engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs')
+configViewEngine(app);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
 
-app.get('/domp', (req, res) => {
-    res.render('sample.ejs')
-})
+//khai bao routes
+app.use('/', webRoutes);
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
