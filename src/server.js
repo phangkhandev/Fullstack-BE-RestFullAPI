@@ -8,6 +8,8 @@ const app = express()
 const port = process.env.PORT || 6868;
 const hostname = process.env.HOST_NAME;
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 //config templete engine
 configViewEngine(app);
