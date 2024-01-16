@@ -9,11 +9,22 @@ const getABC = (req, res) => {
     res.render('sample.ejs');
 }
 
-const postCreateUser = (req, res) => {
-    console.log("check req: ", req.body)
-    res.send("create a new user")
+const getCreatePage = (req, res) => {
+    res.render('create.ejs');
+}
+
+const postCreateUser = async (req, res) => {
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+
+    let [results, fields] = await connection.query(
+        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?)`, [email, name, city],
+    );
+
+    res.send('create user succeed!')
 }
 
 module.exports = {
-    getHomepage, getABC, postCreateUser
+    getHomepage, getABC, postCreateUser, getCreatePage
 }
