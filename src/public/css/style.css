@@ -72,3 +72,7 @@ tr:hover {
 .table-container {
   padding: 15px 20px;
 }
+
+.d-none {
+  display: none;
+}
