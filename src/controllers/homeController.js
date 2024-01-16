@@ -29,7 +29,7 @@ const postCreateUser = async (req, res) => {
         `INSERT INTO Users (email, name, city) VALUES (?, ?, ?)`, [email, name, city],
     );
 
-    res.send('create user succeed!')
+    res.redirect('/');
 }
 
 const postUpdateUser = async (req, res) => {
@@ -40,6 +40,20 @@ const postUpdateUser = async (req, res) => {
     res.redirect('/');
 }
 
+const deleteUserById = async (req, res) => {
+    const userId = req.params.id;
+    let user = await getUserById(userId);
+    res.render('delete.ejs', { userDelete: user });
+}
+
+const postDeleteUser = async (req, res) => {
+    const userId = req.params.id;
+    let [results, fields] = await connection.query(
+        `DELETE FROM Users WHERE id=?`, [userId],
+    );
+    res.redirect('/');
+}
+
 module.exports = {
-    getHomepage, getABC, postCreateUser, getCreatePage, getUpdatePage, postUpdateUser
+    getHomepage, getABC, postCreateUser, getCreatePage, getUpdatePage, deleteUserById, postUpdateUser, postDeleteUser
 }

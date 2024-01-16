@@ -20,6 +20,10 @@ const UpdateUserById = async (email, name, city, userId) => {
     );
 }
 
+const deleteUserById = async () => {
+
+}
+
 module.exports = {
-    getAllUsers, getUserById, UpdateUserById
+    getAllUsers, getUserById, UpdateUserById, deleteUserById
 };
