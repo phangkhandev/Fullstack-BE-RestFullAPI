@@ -14,14 +14,11 @@ app.use(express.urlencoded({ extended: true }))
 //config templete engine
 configViewEngine(app);
 
-
 //khai bao routes
 app.use('/', webRoutes);
 
-
-
-//test connection
-
+// const cat = new Kitten({ name: 'phangk4078' });
+// cat.save();
 
 (async () => {
     try {
