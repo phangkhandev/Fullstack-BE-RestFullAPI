@@ -20,15 +20,18 @@ app.use('/', webRoutes);
 
 
 
-// A simple SELECT query
-// connection.query(
-//     'select * from Users u',
-//     function (err, results, fields) {
-//         console.log("results= ", results); // results contains rows returned by server
-//     }
-// );
+//test connection
 
 
-app.listen(port, hostname, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+(async () => {
+    try {
+        await connection();
+        app.listen(port, hostname, () => {
+            console.log(`Example app listening on port ${port}`)
+        })
+    } catch (error) {
+        console.log("error connect to BD: ", error)
+    }
+})()
+
+
